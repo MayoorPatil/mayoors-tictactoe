@@ -122,7 +122,6 @@ const checkWinnerO = function (answerString, list) {
   Object.keys(store.os).forEach((key) => {
     osString.push(key)
   })
-  console.log('store.storingos...', osString)
   let winningCombo = []
   let winArr = []
   if (osString.length >= 3) {
