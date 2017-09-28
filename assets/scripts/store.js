@@ -33,7 +33,7 @@ const store = {
   'xsDiag': {},
   'userInputs': {},
   'xs': {},
-  'os': [],
+  'os': {},
   'winningCombo': []
 }
 
