@@ -13,45 +13,74 @@
     </head>
     <body class="container-fluid">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">
-        Sign-Up/Register
-      </button>
+      <div class="container">
+        <div class="span4 text-left">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign-In / Register</button>
+        </div>
+        <!-- <div class="span4 text-center">
+          <form id="sign-in-button">
+            <fieldset>
+              <input type="submit" class="btn btn-primary" name="submit" value="Sign In!">
+            </fieldset>
+          </form>
+        </div> -->
+        <div class="span4 text-right">
+          <form id="sign-out-button">
+            <fieldset>
+              <input type="submit" class="btn btn-primary" name="submit" value="Sign Out!">
+            </fieldset>
+          </form>
+        </div>
+
       <h2>TIC TAC TOE</h2>
-      <div class="row">
-        <div id='0' class="col-md-4 col-xs-4 box" style="background-color:orange;">0</div>
-        <div id='1' class="col-md-4 col-xs-4 box" style="background-color:red;">1</div>
-        <div id='2' class="col-md-4 col-xs-4 box" style="background-color:teal;">2</div>
-      </div>
-      <div class="row">
-        <div id='3' class="col-md-4 col-xs-4 box" style="background-color:orange;">3</div>
-        <div id='4' class="col-md-4 col-xs-4 box" style="background-color:red;">4</div>
-        <div id='5' class="col-md-4 col-xs-4 box" style="background-color:teal;">5</div>
-      </div>
-      <div class="row">
-        <div id='6' class="col-md-4 col-xs-4 box" style="background-color:orange;">6</div>
-        <div id='7' class="col-md-4 col-xs-4 box" style="background-color:red;">7</div>
-        <div id='8' class="col-md-4 col-xs-4 box" style="background-color:teal;">8</div>
-      </div>
+        <div class="row">
+          <div id='0' class="col-md-4 col-xs-4 box" style="background-color:orange;">0</div>
+          <div id='1' class="col-md-4 col-xs-4 box" style="background-color:red;">1</div>
+          <div id='2' class="col-md-4 col-xs-4 box" style="background-color:teal;">2</div>
+        </div>
+        <div class="row">
+          <div id='3' class="col-md-4 col-xs-4 box" style="background-color:orange;">3</div>
+          <div id='4' class="col-md-4 col-xs-4 box" style="background-color:red;">4</div>
+          <div id='5' class="col-md-4 col-xs-4 box" style="background-color:teal;">5</div>
+        </div>
+        <div class="row">
+          <div id='6' class="col-md-4 col-xs-4 box" style="background-color:orange;">6</div>
+          <div id='7' class="col-md-4 col-xs-4 box" style="background-color:red;">7</div>
+          <div id='8' class="col-md-4 col-xs-4 box" style="background-color:teal;">8</div>
+        </div>
       </br>
-      <h4 id="result">Result will be displayed here!!</h4>
+      <h5 id="result">Result will be displayed here!!</h5>
+      </div>
       <!-- Modal -->
       <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="signUpModalLabel">Sign Up / Register</h5>
+              <h5 class="modal-title" id="signUpModalLabel">Sign In / Register</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+            <h5 id="sign-up-toggle-text">If not a registered user, then please register</h5>
+            <button id="sign-up-toggle" type="button" class="btn btn-outline-primary">Sign Up / Register</button>
+            <h5 id="sign-in-toggle-text" class="hidden">If already a registered user, then please sign-in</h5>
+            <button id="sign-in-toggle" type="button" class="btn btn-outline-primary hidden">Sign in</button>
             <div class="modal-body">
-              <form id="sign-up">
+              <form id="sign-up" class="hidden">
                 <fieldset>
                   <legend>Sign Up!</legend>
-                  <input type="text" name="credentials[email]" placeholder="Email here">
-                  <input type="text" name="credentials[password]" placeholder="Password here">
-                  <input type="text" name="credentials[password_confirmation]" placeholder="Password conformation here">
+                  <input type="text" name="credentials[email]" placeholder="Email here" required>
+                  <input type="text" name="credentials[password]" placeholder="Password here" required>
+                  <input type="text" name="credentials[password_confirmation]" placeholder="Password conformation here" required>
                   <input type="submit" class="btn btn-primary" name="submit" value="Sign up!">
+                </fieldset>
+              </form>
+              <form id="sign-in">
+                <fieldset>
+                  <legend>Sign In!</legend>
+                  <input type="text" name="credentials[email]" placeholder="Email here" required>
+                  <input type="text" name="credentials[password]" placeholder="Password here" required>
+                  <input type="submit" class="btn btn-primary" name="submit" value="Sign in!">
                 </fieldset>
               </form>
             </div>
@@ -59,7 +88,7 @@
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <!--<button type="button" class="btn btn-primary">Save changes</button>-->
             </div></br>
-            <p id="content">Display Here</p>
+            <p id="content">Red flags here...</p>
           </div>
         </div>
       </div>

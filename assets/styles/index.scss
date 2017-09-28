@@ -6,6 +6,7 @@ $font-color: #dfdfdf;
 $white: #fff;
 $button-color: #008080;
 $width: 600px;
+$p-color: #f00;
 
 body {
   background-color: $background-color;
@@ -21,4 +22,23 @@ body {
 
 .btn-primary {
   background-color: $button-color;
+  margin-right: 15px;
+}
+
+.span4 {
+  display: table-cell;
+  float: left;
+}
+
+h2 {
+  clear: left;
+  padding-top: 20px;
+}
+
+p {
+  color: $p-color;
+}
+
+h5 {
+  color: $button-color;
 }
