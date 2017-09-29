@@ -34,7 +34,12 @@ const store = {
   'userInputs': {},
   'xs': {},
   'os': {},
-  'winningCombo': []
+  'winningCombo': [],
+  'game': {},
+  'player': {},
+  'user': {},
+  'over': false,
+  'reset': false
 }
 
 module.exports = store

@@ -1,11 +1,12 @@
 'use strict'
 
 const store = require('../store.js')
+const gameApi = require('../game/api')
+const gameUi = require('../game/ui')
 
 const signUpSuccess = function (data) {
   console.log(data)
   $('#result').text(data.user.email + ' signed up successfully!!')
-  $('#signUpModal').modal('hide')
   $('#signUpModal').modal('hide')
 }
 
@@ -18,7 +19,12 @@ const signInSuccess = function (data) {
   console.log(data)
   $('#result').text('Signed in successfully!!')
   store.user = data.user
+  store.player = data.user
   $('#signUpModal').modal('hide')
+  $('#sign-out-button').removeClass('hidden')
+  gameApi.createGame()
+    .then(gameUi.createGameSuccess)
+    .catch(gameUi.createGameFailure)
 }
 
 const signInFailure = function (error) {
@@ -38,6 +44,7 @@ const changePasswordFailure = function (error) {
 const signOutSuccess = function () {
   store.user = null // or empty object {}
   $('#result').text('Signed out successfully!!')
+  $('#sign-out-button').addClass('hidden')
 }
 
 const signOutFailure = function (error) {

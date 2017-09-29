@@ -25,7 +25,7 @@
           </form>
         </div> -->
         <div class="span4 text-right">
-          <form id="sign-out-button">
+          <form id="sign-out-button" class="hidden">
             <fieldset>
               <input type="submit" class="btn btn-primary" name="submit" value="Sign Out!">
             </fieldset>
@@ -34,22 +34,23 @@
 
       <h2>TIC TAC TOE</h2>
         <div class="row">
-          <div id='0' class="col-md-4 col-xs-4 box" style="background-color:orange;">0</div>
-          <div id='1' class="col-md-4 col-xs-4 box" style="background-color:red;">1</div>
+          <div id='0' class="col-md-4 col-xs-4 box" style="background-color:teal;">0</div>
+          <div id='1' class="col-md-4 col-xs-4 box" style="background-color:teal;">1</div>
           <div id='2' class="col-md-4 col-xs-4 box" style="background-color:teal;">2</div>
         </div>
         <div class="row">
-          <div id='3' class="col-md-4 col-xs-4 box" style="background-color:orange;">3</div>
-          <div id='4' class="col-md-4 col-xs-4 box" style="background-color:red;">4</div>
+          <div id='3' class="col-md-4 col-xs-4 box" style="background-color:teal;">3</div>
+          <div id='4' class="col-md-4 col-xs-4 box" style="background-color:teal;">4</div>
           <div id='5' class="col-md-4 col-xs-4 box" style="background-color:teal;">5</div>
         </div>
         <div class="row">
-          <div id='6' class="col-md-4 col-xs-4 box" style="background-color:orange;">6</div>
-          <div id='7' class="col-md-4 col-xs-4 box" style="background-color:red;">7</div>
+          <div id='6' class="col-md-4 col-xs-4 box" style="background-color:teal;">6</div>
+          <div id='7' class="col-md-4 col-xs-4 box" style="background-color:teal;">7</div>
           <div id='8' class="col-md-4 col-xs-4 box" style="background-color:teal;">8</div>
         </div>
       </br>
-      <h5 id="result">Result will be displayed here!!</h5>
+      <h5 id="result">Result will be displayed here!!</h5></br>
+      <p id="apiResult">API status here...</p>
       </div>
       <!-- Modal -->
       <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -70,8 +71,8 @@
                 <fieldset>
                   <legend>Sign Up!</legend>
                   <input type="text" name="credentials[email]" placeholder="Email here" required>
-                  <input type="text" name="credentials[password]" placeholder="Password here" required>
-                  <input type="text" name="credentials[password_confirmation]" placeholder="Password conformation here" required>
+                  <input type="password" name="credentials[password]" placeholder="Password here" required>
+                  <input type="password" name="credentials[password_confirmation]" placeholder="Password conformation here" required>
                   <input type="submit" class="btn btn-primary" name="submit" value="Sign up!">
                 </fieldset>
               </form>
@@ -79,7 +80,7 @@
                 <fieldset>
                   <legend>Sign In!</legend>
                   <input type="text" name="credentials[email]" placeholder="Email here" required>
-                  <input type="text" name="credentials[password]" placeholder="Password here" required>
+                  <input type="password" name="credentials[password]" placeholder="Password here" required>
                   <input type="submit" class="btn btn-primary" name="submit" value="Sign in!">
                 </fieldset>
               </form>

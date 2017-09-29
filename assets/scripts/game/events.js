@@ -3,6 +3,9 @@ const store = require('../store.js')
 const checkWinner = require('./logic.js')
 const api = require('../auth/api')
 const ui = require('../auth/ui')
+const gameApi = require('./api')
+const gameUi = require('./ui')
+const helper = require('./helper')
 
 const onSignUp = function (event) {
   const data = getFormFields(this)
@@ -61,31 +64,55 @@ const onSignInToggle = function (event) {
 
 const onUpdateCell = function (event) {
   // const data = getFormFields(this)
-  event.preventDefault()
-  if (store.occupiedCells.length === 0) {
-    event.target.textContent = 'X'
-    store.occupiedCells.push(event.target.id)
-    store.userInputs[event.target.id] = 'X'
-    store.playerX.push(!store.playerX.pop())
+  if (store.player.id === undefined || store.reset) {
+    if (store.reset) {
+      $('#result').text('Please click restart if you want to play another game')
+    } else {
+      $('#result').css({'color': 'red'})
+      $('#result').text('Please sign IN to start the game!!')
+    }
   } else {
-    const marked = store.occupiedCells.find(marked => marked === event.target.id)
-    if (marked === undefined) {
-      if (store.playerX.includes(true)) {
+    if (store.over) {
+      $('#result').text('The game is over!! Please use the restart button to play another game')
+      helper.resetBoard()
+      // Upon clicking restart call create game - to do set reset to false
+    } else {
+      event.preventDefault()
+      if (store.occupiedCells.length === 0) {
+        // assume signed in user is player X
         event.target.textContent = 'X'
         store.occupiedCells.push(event.target.id)
         store.userInputs[event.target.id] = 'X'
         store.playerX.push(!store.playerX.pop())
       } else {
-        event.target.textContent = 'O'
-        store.occupiedCells.push(event.target.id)
-        store.userInputs[event.target.id] = 'O'
-        store.playerX.push(!store.playerX.pop())
+        // check to see if the cell is already marked
+        const marked = store.occupiedCells.find(marked => marked === event.target.id)
+        console.log('what is marked....', marked)
+        if (marked === undefined) {
+          // logic to toggle player - can be refactored
+          if (store.playerX.includes(true)) {
+            event.target.textContent = 'O'
+            store.occupiedCells.push(event.target.id)
+            store.userInputs[event.target.id] = 'O'
+            store.playerX.push(!store.playerX.pop())
+          } else {
+            event.target.textContent = 'X'
+            store.occupiedCells.push(event.target.id)
+            store.userInputs[event.target.id] = 'X'
+            store.playerX.push(!store.playerX.pop())
+          }
+        }
       }
+      const winner = checkWinner.checkWinnerX(store.answerString, store.winningDiags) || checkWinner.checkWinnerO(store.answerString, store.winningDiags)
+      winner ? store.over = true : store.over = false
+      if (!winner && store.occupiedCells.length === 9 && store.winningCombo.length < 3) {
+        $('#result').text('There is NO winner, it\'s a draw!!')
+        store.over = true
+      }
+      gameApi.patchCellInfo(event)
+        .then(gameUi.patchCellInfoSuccess)
+        .catch(gameUi.patchCellInfoFailure)
     }
-  }
-  const winner = checkWinner.checkWinnerX(store.answerString, store.winningDiags) || checkWinner.checkWinnerO(store.answerString, store.winningDiags)
-  if (!winner && store.occupiedCells.length === 9 && store.winningCombo.length < 3) {
-    $('#result').text('There is NO winner, it\'s a draw!!')
   }
 }
 
