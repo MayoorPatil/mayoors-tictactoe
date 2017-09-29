@@ -3,9 +3,9 @@
 const store = require('../store.js')
 const gameApi = require('../game/api')
 const gameUi = require('../game/ui')
+const helper = require('../game/helper')
 
 const signUpSuccess = function (data) {
-  console.log(data)
   $('#result').text(data.user.email + ' signed up successfully!!')
   $('#signUpModal').modal('hide')
 }
@@ -16,13 +16,13 @@ const signUpFailure = function (error) {
 }
 
 const signInSuccess = function (data) {
-  console.log(data)
   $('#result').text('Signed in successfully!!')
   store.user = data.user
   store.player = data.user
   $('#signUpModal').modal('hide')
   $('#sign-out-button').removeClass('hidden')
   $('#change-pwd-btn').removeClass('hidden')
+  $('#show-stats').removeClass('hidden')
   gameApi.createGame()
     .then(gameUi.createGameSuccess)
     .catch(gameUi.createGameFailure)
@@ -50,9 +50,15 @@ const changePasswordFailure = function (error) {
 }
 
 const signOutSuccess = function () {
-  store.user = null // or empty object {}
+  store.user = {}
+  store.player = {}
+  helper.resetBoard()
+  store.reset = false
   $('#result').text('Signed out successfully!!')
   $('#sign-out-button').addClass('hidden')
+  $('#change-pwd-btn').addClass('hidden')
+  $('#show-stats').addClass('hidden')
+  $('#re-start').addClass('hidden')
 }
 
 const signOutFailure = function (error) {

@@ -27,7 +27,18 @@ const patchCellInfo = function (event) {
   })
 }
 
+const getGames = function () {
+  return $.ajax({
+    url: config.apiOrigin + '/games',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   createGame,
-  patchCellInfo
+  patchCellInfo,
+  getGames
 }

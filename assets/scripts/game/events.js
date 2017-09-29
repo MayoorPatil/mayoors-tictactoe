@@ -5,7 +5,6 @@ const api = require('../auth/api')
 const ui = require('../auth/ui')
 const gameApi = require('./api')
 const gameUi = require('./ui')
-const helper = require('./helper')
 
 const onSignUp = function (event) {
   const data = getFormFields(this)
@@ -86,20 +85,31 @@ const onSignInRegister = function (event) {
   $('#signUpModalLabel').text('Sign In / Register')
 }
 
+const onrestartGame = function (event) {
+  event.preventDefault()
+  gameApi.createGame()
+    .then(gameUi.restartGameSuccess)
+    .catch(gameUi.restartGameFailure)
+}
+
+const onShowStats = function (event) {
+  event.preventDefault()
+  gameApi.getGames()
+    .then(gameUi.getGamesSuccess)
+    .catch(gameUi.getGamesFailure)
+}
+
 const onUpdateCell = function (event) {
-  // const data = getFormFields(this)
   if (store.player.id === undefined || store.reset) {
     if (store.reset) {
-      $('#result').text('Please click restart if you want to play another game')
+      $('#result').text('Please click start button to play another game')
     } else {
-      $('#result').css({'color': 'red'})
+      $('#result').css({'color': 'teal'})
       $('#result').text('Please sign IN to start the game!!')
     }
   } else {
     if (store.over) {
-      $('#result').text('The game is over!! Please use the restart button to play another game')
-      helper.resetBoard()
-      // Upon clicking restart call create game - to do set reset to false
+      $('#result').text('The game is over!! Please click the start button to play another game')
     } else {
       event.preventDefault()
       if (store.occupiedCells.length === 0) {
@@ -111,7 +121,6 @@ const onUpdateCell = function (event) {
       } else {
         // check to see if the cell is already marked
         const marked = store.occupiedCells.find(marked => marked === event.target.id)
-        console.log('what is marked....', marked)
         if (marked === undefined) {
           // logic to toggle player - can be refactored
           if (store.playerX.includes(true)) {
@@ -129,9 +138,11 @@ const onUpdateCell = function (event) {
       }
       const winner = checkWinner.checkWinnerX(store.answerString, store.winningDiags) || checkWinner.checkWinnerO(store.answerString, store.winningDiags)
       winner ? store.over = true : store.over = false
+      if (winner) { $('#re-start').removeClass('hidden') }
       if (!winner && store.occupiedCells.length === 9 && store.winningCombo.length < 3) {
         $('#result').text('There is NO winner, it\'s a draw!!')
         store.over = true
+        $('#re-start').removeClass('hidden')
       }
       gameApi.patchCellInfo(event)
         .then(gameUi.patchCellInfoSuccess)
@@ -144,12 +155,14 @@ const addHandlers = function () {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-password').on('submit', onChangePassword)
-  $('#sign-out').on('submit', onSignOut)
+  $('#sign-out-button').on('submit', onSignOut)
   $('.col-md-4').on('click', onUpdateCell)
   $('#sign-up-toggle').on('click', onSignUpToggle)
   $('#sign-in-toggle').on('click', onSignInToggle)
   $('#change-pwd-btn').on('click', onChangePwdButton)
   $('#sign-in-register').on('click', onSignInRegister)
+  $('#re-start').on('click', onrestartGame)
+  $('#show-stats').on('click', onShowStats)
 }
 
 module.exports = {

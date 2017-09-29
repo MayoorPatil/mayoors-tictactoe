@@ -101,7 +101,7 @@ const checkWinnerX = function (answerString, list) {
     }
   }
   if (winningCombo.length === 3) {
-    $('#result').text('Winner is - ' + $('#' + winningCombo.substring(0, 1)).text() + ' and the winning cells are :- ' + winningCombo)
+    $('#result').text('Winner is - ' + $('#' + winningCombo.substring(0, 1)).text() + ' and the winning cells are highlighted')
     for (let i = 0; i < winningCombo.length; i++) {
       $('#' + winningCombo.substring(i, i + 1)).css('background-color', 'green')
       store.winningCombo.push(winningCombo.substring(i, i + 1))
@@ -171,7 +171,7 @@ const checkWinnerO = function (answerString, list) {
     }
   }
   if (winningCombo.length === 3) {
-    $('#result').text('Winner is - ' + $('#' + winningCombo.substring(0, 1)).text() + ' and the winning cells are :- ' + winningCombo)
+    $('#result').text('Winner is - ' + $('#' + winningCombo.substring(0, 1)).text() + ' and the winning cells are highlighted')
     for (let i = 0; i < winningCombo.length; i++) {
       $('#' + winningCombo.substring(i, i + 1)).css('background-color', 'green')
       store.winningCombo.push(winningCombo.substring(i, i + 1))

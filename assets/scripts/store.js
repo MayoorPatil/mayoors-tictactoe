@@ -39,7 +39,8 @@ const store = {
   'player': {},
   'user': {},
   'over': false,
-  'reset': false
+  'reset': false,
+  'games': {}
 }
 
 module.exports = store
