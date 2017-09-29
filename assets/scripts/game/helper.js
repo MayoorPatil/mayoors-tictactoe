@@ -62,7 +62,6 @@ const getPatchCellInfoData = function (event) {
       'player_o': null
     }
   }
-  console.log('my cell info data is...' + newInfo)
   return newInfo
 }
 

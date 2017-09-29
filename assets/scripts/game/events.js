@@ -62,6 +62,30 @@ const onSignInToggle = function (event) {
   $('#sign-up-toggle-text').removeClass('hidden')
 }
 
+const onChangePwdButton = function (event) {
+  event.preventDefault()
+  $('#sign-up').addClass('hidden')
+  $('#sign-in-toggle').addClass('hidden')
+  $('#sign-in-toggle-text').addClass('hidden')
+  $('#sign-in').addClass('hidden')
+  $('#sign-up-toggle').addClass('hidden')
+  $('#sign-up-toggle-text').addClass('hidden')
+  $('#change-password').removeClass('hidden')
+  $('#signUpModalLabel').text('Change Password')
+}
+
+const onSignInRegister = function (event) {
+  event.preventDefault()
+  $('#sign-up').addClass('hidden')
+  $('#sign-in-toggle').addClass('hidden')
+  $('#sign-in-toggle-text').addClass('hidden')
+  $('#sign-in').removeClass('hidden')
+  $('#sign-up-toggle').removeClass('hidden')
+  $('#sign-up-toggle-text').removeClass('hidden')
+  $('#change-password').addClass('hidden')
+  $('#signUpModalLabel').text('Sign In / Register')
+}
+
 const onUpdateCell = function (event) {
   // const data = getFormFields(this)
   if (store.player.id === undefined || store.reset) {
@@ -124,6 +148,8 @@ const addHandlers = function () {
   $('.col-md-4').on('click', onUpdateCell)
   $('#sign-up-toggle').on('click', onSignUpToggle)
   $('#sign-in-toggle').on('click', onSignInToggle)
+  $('#change-pwd-btn').on('click', onChangePwdButton)
+  $('#sign-in-register').on('click', onSignInRegister)
 }
 
 module.exports = {

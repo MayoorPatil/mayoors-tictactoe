@@ -15,7 +15,10 @@
       <!-- Button trigger modal -->
       <div id="container" class="container">
         <div class="span4 text-left">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign-In / Register</button>
+          <button id="sign-in-register" type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign-In / Register</button>
+        </div>
+        <div class="span4 text-right">
+          <button id="change-pwd-btn" type="button" class="btn btn-primary hidden" data-toggle="modal" data-target="#signUpModal">Change Password</button>
         </div>
         <!-- <div class="span4 text-center">
           <form id="sign-in-button">
@@ -53,7 +56,7 @@
       <p id="apiResult">API status here...</p>
       </div>
       <!-- Modal -->
-      <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -76,6 +79,14 @@
                   <input type="submit" class="btn btn-primary" name="submit" value="Sign up!">
                 </fieldset>
               </form>
+              <form id="change-password" class="hidden">
+                <fieldset>
+                  <legend>Change Password!</legend>
+                  <input type="password" name="passwords[old]" placeholder="Old password here" required>
+                  <input type="password" name="passwords[new]" placeholder="New password here" required>
+                  <input type="submit" class="btn btn-primary" name="submit" value="Change Password!">
+                </fieldset>
+              </form>
               <form id="sign-in">
                 <fieldset>
                   <legend>Sign In!</legend>
@@ -87,7 +98,6 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <!--<button type="button" class="btn btn-primary">Save changes</button>-->
             </div></br>
             <p id="content">Red flags here...</p>
           </div>

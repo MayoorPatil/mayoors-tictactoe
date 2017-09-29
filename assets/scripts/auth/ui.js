@@ -22,6 +22,7 @@ const signInSuccess = function (data) {
   store.player = data.user
   $('#signUpModal').modal('hide')
   $('#sign-out-button').removeClass('hidden')
+  $('#change-pwd-btn').removeClass('hidden')
   gameApi.createGame()
     .then(gameUi.createGameSuccess)
     .catch(gameUi.createGameFailure)
@@ -34,6 +35,13 @@ const signInFailure = function (error) {
 
 const changePasswordSuccess = function () {
   $('#result').text('Password updated successfully!!')
+  $('#sign-in-toggle').addClass('hidden')
+  $('#sign-in-toggle-text').addClass('hidden')
+  $('#sign-in').addClass('hidden')
+  $('#sign-up').removeClass('hidden')
+  $('#sign-up-toggle').removeClass('hidden')
+  $('#sign-up-toggle-text').removeClass('hidden')
+  $('#signUpModalLabel').text('Sign In / Register')
 }
 
 const changePasswordFailure = function (error) {
