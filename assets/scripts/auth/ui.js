@@ -3,7 +3,8 @@
 const store = require('../store.js')
 const gameApi = require('../game/api')
 const gameUi = require('../game/ui')
-const helper = require('../game/helper')
+const gameHelper = require('../game/helper')
+const authHelper = require('./helper')
 
 const signUpSuccess = function (data) {
   $('#result').text(data.user.email + ' signed up successfully!!')
@@ -20,9 +21,7 @@ const signInSuccess = function (data) {
   store.user = data.user
   store.player = data.user
   $('#signUpModal').modal('hide')
-  $('#sign-out-button').removeClass('hidden')
-  $('#change-pwd-btn').removeClass('hidden')
-  $('#show-stats').removeClass('hidden')
+  authHelper.setSignInSuccessShowHide()
   gameApi.createGame()
     .then(gameUi.createGameSuccess)
     .catch(gameUi.createGameFailure)
@@ -35,13 +34,9 @@ const signInFailure = function (error) {
 
 const changePasswordSuccess = function () {
   $('#result').text('Password updated successfully!!')
-  $('#sign-in-toggle').addClass('hidden')
-  $('#sign-in-toggle-text').addClass('hidden')
-  $('#sign-in').addClass('hidden')
-  $('#sign-up').removeClass('hidden')
-  $('#sign-up-toggle').removeClass('hidden')
-  $('#sign-up-toggle-text').removeClass('hidden')
+  authHelper.setChangePasswordSuccessShowHide()
   $('#signUpModalLabel').text('Sign In / Register')
+  $('#signUpModal').modal('hide')
 }
 
 const changePasswordFailure = function (error) {
@@ -52,13 +47,10 @@ const changePasswordFailure = function (error) {
 const signOutSuccess = function () {
   store.user = {}
   store.player = {}
-  helper.resetBoard()
+  gameHelper.resetBoard()
   store.reset = false
   $('#result').text('Signed out successfully!!')
-  $('#sign-out-button').addClass('hidden')
-  $('#change-pwd-btn').addClass('hidden')
-  $('#show-stats').addClass('hidden')
-  $('#re-start').addClass('hidden')
+  authHelper.setSignOutSuccessShowHide()
 }
 
 const signOutFailure = function (error) {

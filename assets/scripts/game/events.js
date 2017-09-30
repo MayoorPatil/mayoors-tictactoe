@@ -1,34 +1,9 @@
-const getFormFields = require('../../../lib/get-form-fields')
 const store = require('../store.js')
 const checkWinner = require('./logic.js')
 const api = require('../auth/api')
 const ui = require('../auth/ui')
 const gameApi = require('./api')
 const gameUi = require('./ui')
-
-const onSignUp = function (event) {
-  const data = getFormFields(this)
-  event.preventDefault()
-  api.signUp(data)
-    .then(ui.signUpSuccess)
-    .catch(ui.signUpFailure)
-}
-
-const onSignIn = function (event) {
-  const data = getFormFields(this)
-  event.preventDefault()
-  api.signIn(data)
-    .then(ui.signInSuccess)
-    .catch(ui.signInFailure)
-}
-
-const onChangePassword = function (event) {
-  const data = getFormFields(this)
-  event.preventDefault()
-  api.changePassword(data)
-    .then(ui.changePasswordSuccess)
-    .catch(ui.changePasswordFailure)
-}
 
 const onSignOut = function (event) {
   event.preventDefault()
@@ -39,38 +14,6 @@ const onSignOut = function (event) {
   } else {
     $('#result').text('Please sign IN before you sign OUT!!')
   }
-}
-
-const onSignUpToggle = function (event) {
-  event.preventDefault()
-  $('#sign-up').removeClass('hidden')
-  $('#sign-in-toggle').removeClass('hidden')
-  $('#sign-in-toggle-text').removeClass('hidden')
-  $('#sign-in').addClass('hidden')
-  $('#sign-up-toggle').addClass('hidden')
-  $('#sign-up-toggle-text').addClass('hidden')
-}
-
-const onSignInToggle = function (event) {
-  event.preventDefault()
-  $('#sign-in').removeClass('hidden')
-  $('#sign-in-toggle').addClass('hidden')
-  $('#sign-in-toggle-text').addClass('hidden')
-  $('#sign-up').addClass('hidden')
-  $('#sign-up-toggle').removeClass('hidden')
-  $('#sign-up-toggle-text').removeClass('hidden')
-}
-
-const onChangePwdButton = function (event) {
-  event.preventDefault()
-  $('#sign-up').addClass('hidden')
-  $('#sign-in-toggle').addClass('hidden')
-  $('#sign-in-toggle-text').addClass('hidden')
-  $('#sign-in').addClass('hidden')
-  $('#sign-up-toggle').addClass('hidden')
-  $('#sign-up-toggle-text').addClass('hidden')
-  $('#change-password').removeClass('hidden')
-  $('#signUpModalLabel').text('Change Password')
 }
 
 const onSignInRegister = function (event) {
@@ -151,20 +94,14 @@ const onUpdateCell = function (event) {
   }
 }
 
-const addHandlers = function () {
-  $('#sign-up').on('submit', onSignUp)
-  $('#sign-in').on('submit', onSignIn)
-  $('#change-password').on('submit', onChangePassword)
+const addGameHandlers = function () {
   $('#sign-out-button').on('submit', onSignOut)
   $('.col-md-4').on('click', onUpdateCell)
-  $('#sign-up-toggle').on('click', onSignUpToggle)
-  $('#sign-in-toggle').on('click', onSignInToggle)
-  $('#change-pwd-btn').on('click', onChangePwdButton)
   $('#sign-in-register').on('click', onSignInRegister)
   $('#re-start').on('click', onrestartGame)
   $('#show-stats').on('click', onShowStats)
 }
 
 module.exports = {
-  addHandlers
+  addGameHandlers
 }
