@@ -1,0 +1,24 @@
+.box {
+  border: 3px solid $white;
+  display: table-cell;
+  font-size: 40px;
+  padding: 20px;
+  text-align: center;
+  width: 15%;
+}
+
+.btn-primary {
+  background-color: $button-color;
+  margin-right: 15px;
+  margin-top: 5px;
+}
+
+.span4 {
+  display: table-cell;
+  float: left;
+}
+
+h2 {
+  clear: left;
+  padding-top: 20px;
+}

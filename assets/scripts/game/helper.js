@@ -12,7 +12,7 @@ const resetBoard = function () {
   store.playerX = []
   store.reset = true
   for (let i = 0; i < 9; i++) {
-    $('#' + i.toString()).text(i.toString())
+    $('#' + i.toString()).html('&nbsp;')
     $('#' + i.toString()).css({'background-color': 'teal'})
   }
 }
