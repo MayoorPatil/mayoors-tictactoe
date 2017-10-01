@@ -32,3 +32,9 @@ h3 {
   background-color: $board-background-color;
   font-weight: bold;
 }
+
+@media only screen and (max-width: 768px) {
+  [class*='box'] {
+    padding: 5px;
+  }
+}

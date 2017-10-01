@@ -9,6 +9,8 @@ const authHelper = require('./helper')
 const signUpSuccess = function (data) {
   $('#result').text(data.user.email + ' signed up successfully!!')
   authHelper.clearFormInputFields('sign-up')
+  authHelper.clearFormInputFields('sign-in')
+  authHelper.clearFormInputFields('change-password')
   $('#signUpModal').modal('hide')
 }
 
@@ -24,6 +26,7 @@ const signInSuccess = function (data) {
   store.player = data.user
   authHelper.clearFormInputFields('sign-in')
   $('#signUpModal').modal('hide')
+  $('#infoMessage').html('&nbsp;')
   authHelper.setSignInSuccessShowHide()
   gameApi.createGame()
     .then(gameUi.createGameSuccess)
@@ -54,7 +57,7 @@ const signOutSuccess = function () {
   store.player = {}
   gameHelper.resetBoard()
   store.reset = false
-  $('#infoMessage').html('&nbsp;')
+  $('#infoMessage').text('Please sign in to start playing')
   $('#result').text('Signed out successfully!!')
   authHelper.setSignOutSuccessShowHide()
 }

@@ -1,9 +1,11 @@
 const store = require('../store.js')
-const checkWinner = require('./logic.js')
+const checkAndDisplayWinner = require('./logic.js')
+// const checkAndDisplayWinner = require('./newlogic.js')
 const api = require('../auth/api')
 const ui = require('../auth/ui')
 const gameApi = require('./api')
 const gameUi = require('./ui')
+const helper = require('./helper')
 
 const onSignOut = function (event) {
   event.preventDefault()
@@ -26,6 +28,7 @@ const onSignInRegister = function (event) {
   $('#sign-up-toggle-text').removeClass('hidden')
   $('#change-password').addClass('hidden')
   $('#signUpModalLabel').text('Sign In / Register')
+  $('#content').text('Informational messages will be displayed here...')
 }
 
 const onrestartGame = function (event) {
@@ -43,6 +46,7 @@ const onShowStats = function (event) {
 }
 
 const onUpdateCell = function (event) {
+  event.preventDefault()
   if (store.player.id === undefined || store.reset) {
     if (store.reset) {
       $('#result').text('Please click start button to play another game')
@@ -54,42 +58,23 @@ const onUpdateCell = function (event) {
     if (store.over) {
       $('#result').text('The game is over!! Please click the start button to play another game')
     } else {
-      event.preventDefault()
       if (store.occupiedCells.length === 0) {
         // assume signed in user is player X
-        event.target.textContent = 'X'
-        $('#infoMessage').text('O\'s turn')
-        store.occupiedCells.push(event.target.id)
-        store.userInputs[event.target.id] = 'X'
-        store.playerX.push(!store.playerX.pop())
+        helper.updateUIAndStore(event, 'X')
+        $('#result').html('&nbsp;')
       } else {
         // check to see if the cell is already marked
         const marked = store.occupiedCells.find(marked => marked === event.target.id)
         if (marked === undefined) {
-          // logic to toggle player - can be refactored
+          // logic to toggle player
           if (store.playerX.includes(true)) {
-            event.target.textContent = 'O'
-            $('#infoMessage').text('X\'s turn')
-            store.occupiedCells.push(event.target.id)
-            store.userInputs[event.target.id] = 'O'
-            store.playerX.push(!store.playerX.pop())
+            helper.updateUIAndStore(event, 'O')
           } else {
-            event.target.textContent = 'X'
-            $('#infoMessage').text('O\'s turn')
-            store.occupiedCells.push(event.target.id)
-            store.userInputs[event.target.id] = 'X'
-            store.playerX.push(!store.playerX.pop())
+            helper.updateUIAndStore(event, 'X')
           }
         }
       }
-      const winner = checkWinner.checkWinnerX(store.answerString, store.winningDiags) || checkWinner.checkWinnerO(store.answerString, store.winningDiags)
-      winner ? store.over = true : store.over = false
-      if (winner) { $('#re-start').removeClass('hidden') }
-      if (!winner && store.occupiedCells.length === 9 && store.winningCombo.length < 3) {
-        $('#infoMessage').text('It\'s a draw!!')
-        store.over = true
-        $('#re-start').removeClass('hidden')
-      }
+      checkAndDisplayWinner.displayWinner(checkAndDisplayWinner.checkWinner())
       gameApi.patchCellInfo(event)
         .then(gameUi.patchCellInfoSuccess)
         .catch(gameUi.patchCellInfoFailure)

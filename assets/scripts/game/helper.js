@@ -3,8 +3,8 @@ const store = require('../store.js')
 
 const resetBoard = function () {
   store.userInputs = {}
-  store.xs = {}
-  store.os = {}
+  store.xsString = ''
+  store.osString = ''
   store.winningCombo = []
   store.game = {}
   store.over = false
@@ -36,7 +36,26 @@ const getPatchCellInfoData = function (event) {
   return newInfo
 }
 
+const updateUIAndStore = function (event, player) {
+  if (player === 'X') {
+    event.target.textContent = 'X'
+    $('#infoMessage').text('O\'s turn')
+    store.xsString += event.target.id
+    store.occupiedCells.push(event.target.id)
+    store.userInputs[event.target.id] = 'X'
+    store.playerX.push(!store.playerX.pop())
+  } else {
+    event.target.textContent = 'O'
+    $('#infoMessage').text('X\'s turn')
+    store.osString += event.target.id
+    store.occupiedCells.push(event.target.id)
+    store.userInputs[event.target.id] = 'O'
+    store.playerX.push(!store.playerX.pop())
+  }
+}
+
 module.exports = {
   getPatchCellInfoData,
-  resetBoard
+  resetBoard,
+  updateUIAndStore
 }
