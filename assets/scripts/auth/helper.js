@@ -63,7 +63,6 @@ const setSignOutSuccessShowHide = function () {
 
 const clearFormInputFields = function (formId) {
   if (formId !== 'change-password') {
-    console.log('Am i here.....')
     $('#' + formId + ' input:text').val('')
   }
   $('#' + formId + ' input:password').val('')
