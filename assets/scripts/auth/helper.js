@@ -61,11 +61,20 @@ const setSignOutSuccessShowHide = function () {
   $('#re-start').addClass('hidden')
 }
 
+const clearFormInputFields = function (formId) {
+  if (formId !== 'change-password') {
+    console.log('Am i here.....')
+    $('#' + formId + ' input:text').val('')
+  }
+  $('#' + formId + ' input:password').val('')
+}
+
 module.exports = {
   setSignUpToggleShowHide,
   setSignInToggleShowHide,
   setOnChangePwdShowHide,
   setSignInSuccessShowHide,
   setChangePasswordSuccessShowHide,
-  setSignOutSuccessShowHide
+  setSignOutSuccessShowHide,
+  clearFormInputFields
 }

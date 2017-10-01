@@ -38,8 +38,8 @@ const onrestartGame = function (event) {
 const onShowStats = function (event) {
   event.preventDefault()
   gameApi.getGames()
-    .then(gameUi.getGamesSuccess)
-    .catch(gameUi.getGamesFailure)
+    .then(gameUi.showStatsSuccess)
+    .catch(gameUi.showStatsFailure)
 }
 
 const onUpdateCell = function (event) {
@@ -48,7 +48,7 @@ const onUpdateCell = function (event) {
       $('#result').text('Please click start button to play another game')
     } else {
       $('#result').css({'color': 'teal'})
-      $('#result').text('Please sign IN to start the game!!')
+      $('#result').text('Please sign in to start playing the game')
     }
   } else {
     if (store.over) {
@@ -58,6 +58,7 @@ const onUpdateCell = function (event) {
       if (store.occupiedCells.length === 0) {
         // assume signed in user is player X
         event.target.textContent = 'X'
+        $('#infoMessage').text('O\'s turn')
         store.occupiedCells.push(event.target.id)
         store.userInputs[event.target.id] = 'X'
         store.playerX.push(!store.playerX.pop())
@@ -68,11 +69,13 @@ const onUpdateCell = function (event) {
           // logic to toggle player - can be refactored
           if (store.playerX.includes(true)) {
             event.target.textContent = 'O'
+            $('#infoMessage').text('X\'s turn')
             store.occupiedCells.push(event.target.id)
             store.userInputs[event.target.id] = 'O'
             store.playerX.push(!store.playerX.pop())
           } else {
             event.target.textContent = 'X'
+            $('#infoMessage').text('O\'s turn')
             store.occupiedCells.push(event.target.id)
             store.userInputs[event.target.id] = 'X'
             store.playerX.push(!store.playerX.pop())
@@ -83,7 +86,7 @@ const onUpdateCell = function (event) {
       winner ? store.over = true : store.over = false
       if (winner) { $('#re-start').removeClass('hidden') }
       if (!winner && store.occupiedCells.length === 9 && store.winningCombo.length < 3) {
-        $('#result').text('There is NO winner, it\'s a draw!!')
+        $('#infoMessage').text('It\'s a draw!!')
         store.over = true
         $('#re-start').removeClass('hidden')
       }

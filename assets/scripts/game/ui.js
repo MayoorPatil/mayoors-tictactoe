@@ -24,7 +24,8 @@ const patchCellInfoFailure = function (error) {
 
 const restartGameSuccess = function (data) {
   helper.resetBoard()
-  $('#result').text('Enjoy the new game! Result will be displayed here!!')
+  $('#infoMessage').html('&nbsp;')
+  $('#result').text('Enjoy the new game! Informational messages will be displayed here!!')
   store.game = data.game
   $('#re-start').addClass('hidden')
   store.reset = false
@@ -35,8 +36,8 @@ const restartGameFailure = function (error) {
   $('#result').text('Sorry, some problem with staring a new game, please signout and sign back in - ' + error.statusText)
 }
 
-const getGamesSuccess = function (data) {
-  $('#stats-modal-title').text('Here are your stats')
+const showStatsSuccess = function (data) {
+  $('#stats-modal-title').text('Here are your stats - ' + store.player.email.substring(0, (store.player.email.indexOf('@'))))
   $('#stats-modal-body').removeClass('hidden')
   store.games = data.games
   const completedGames = []
@@ -49,7 +50,7 @@ const getGamesSuccess = function (data) {
   $('#games-not-completed').html('Games Not Completed <span class="badge">' + notCompletedGames.length + '</span>')
 }
 
-const getGamesFailure = function (error) {
+const showStatsFailure = function (error) {
   console.error(error)
   $('#stats-modal-title').text('Sorry, some problem with getting your stats, please try later - ' + error.statusText)
   $('#stats-modal-body').addClass('hidden')
@@ -62,6 +63,6 @@ module.exports = {
   patchCellInfoFailure,
   restartGameSuccess,
   restartGameFailure,
-  getGamesSuccess,
-  getGamesFailure
+  showStatsSuccess,
+  showStatsFailure
 }

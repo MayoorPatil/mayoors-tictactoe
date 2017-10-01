@@ -31,27 +31,28 @@
           </form>
         </div>
 
-      <h2>TIC TAC TOE</h2>
+      <h2><strong>TIC TAC TOE</strong></h2>
+      <h6>- by Mayoor Patil</h6>
+      <h3 id="infoMessage">&nbsp;</h3>
         <div class="row">
-          <div id='0' class="col-md-4 col-xs-4 box" style="background-color:teal;">&nbsp;</div>
-          <div id='1' class="col-md-4 col-xs-4 box" style="background-color:teal;">&nbsp;</div>
-          <div id='2' class="col-md-4 col-xs-4 box" style="background-color:teal;">&nbsp;</div>
+          <div id='0' class="col-md-4 col-xs-4 box board">&nbsp;</div>
+          <div id='1' class="col-md-4 col-xs-4 box board">&nbsp;</div>
+          <div id='2' class="col-md-4 col-xs-4 box board">&nbsp;</div>
         </div>
         <div class="row">
-          <div id='3' class="col-md-4 col-xs-4 box" style="background-color:teal;">&nbsp;</div>
-          <div id='4' class="col-md-4 col-xs-4 box" style="background-color:teal;">&nbsp;</div>
-          <div id='5' class="col-md-4 col-xs-4 box" style="background-color:teal;">&nbsp;</div>
+          <div id='3' class="col-md-4 col-xs-4 box board">&nbsp;</div>
+          <div id='4' class="col-md-4 col-xs-4 box board">&nbsp;</div>
+          <div id='5' class="col-md-4 col-xs-4 box board">&nbsp;</div>
         </div>
         <div class="row">
-          <div id='6' class="col-md-4 col-xs-4 box" style="background-color:teal;">&nbsp;</div>
-          <div id='7' class="col-md-4 col-xs-4 box" style="background-color:teal;">&nbsp;</div>
-          <div id='8' class="col-md-4 col-xs-4 box" style="background-color:teal;">&nbsp;</div>
-        </div>
-      </br>
+          <div id='6' class="col-md-4 col-xs-4 box board">&nbsp;</div>
+          <div id='7' class="col-md-4 col-xs-4 box board">&nbsp;</div>
+          <div id='8' class="col-md-4 col-xs-4 box board">&nbsp;</div>
+        </div></br>
+      <h5 id="result">Game result will be displayed here!!</h5>
       <div class="span4 text-left">
         <button id="re-start" type="button" class="btn btn-primary hidden">Start New Game</button>
       </div>
-      <h5 id="result">Game result will be displayed here!!</h5></br>
       </div>
       <!-- Stats Modal Start -->
       <div class="modal fade" id="statsModal" role="dialog">
@@ -63,7 +64,6 @@
               <h4 id="stats-modal-title" class="modal-title">Here are your stats</h4>
             </div>
             <div id="stats-modal-body" class="modal-body">
-                <h2>My Stats</h2>
                 <ul class="list-group">
                   <li id="games-played" class="list-group-item">Games Played <span class="badge">12</span></li>
                   <li id="games-completed" class="list-group-item">Games Completed <span class="badge">5</span></li>
@@ -121,7 +121,7 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div></br>
-            <p id="content">Red flags here...</p>
+            <p id="content">Informational messages will be displayed here...</p>
           </div>
         </div>
       </div>
