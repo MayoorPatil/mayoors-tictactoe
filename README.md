@@ -1,58 +1,55 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# browser-template
+# My fisrt Javascript Project at GA code school
 
-A template for starting front-end projects. Webpack for `require` system, build
-pipeline, and development server. Boostrap and Handlebars.js included. No
-front-end frameworks included.
+This is a Tic Tac Toe responsive single page application built in javascript. This is my first project in javascript and is based on three weeks of knowledge :). This is a very basic application where you play tic tac toe against your self.
 
-## Installation
+In future iterations to include support for the following:
 
-1.  [Download](../../archive/master.zip) this template.
-1.  Unzip and rename the template directory.
-1.  Empty [`README.md`](README.md) and fill with your own content.
-1.  Replace all instances of `ga-wdi-boston.browser-template` with the name of your project.
-1.  Move into the new project and `git init`
-1.  Add all of the files in your project with the command `git add -A`
-  -   *Note:* THIS IS THE ONLY TIME YOU SHOULD RUN THIS COMMAND
-1.  Commit all of your files with the command `git commit`
-  -   Your commit title should read `Initial commit`
-1.  Install dependencies with `npm install`.
+1.  Retrieve a completed game using the game id and dipslay the state of the completed game
+2.  Adding support where a player can play against the computer
+3.  Add support where a user can play with another user
 
-## Structure
+I am open to feedback and suggestions. If you have any please connect and share.
 
-Developers should store JavaScript files in [`assets/scripts`](assets/scripts).
-The "manifest" or entry-point is
-[`assets/scripts/index.js`](assets/scripts/index.js). In general, only
-application initialization goes in this file. It's normal for developers to
-start putting all code in this file, but encourage them to break out different
-responsibilities and use the `require` syntax put references where they're
-needed.
+## Contact me
+[LinkedIn](http://www.linkedin.com/pub/mayoor-patil/10/8a0/338)
 
-Developers should set `config.apiOrigins.production` (and
-`config.apiOrigins.development` if it differs from the default).  With
-`apiOrigins` set, developers may rely on `config.apiOrigin` as the base for API
-URLs.
+## Technologies and Tools Used
 
-Developers should store styles in [`assets/styles`](assets/styles) and load them
-from [`assets/styles/index.scss`](assets/styles/index.scss).
+The following tools and technologies where used to build this application
 
-Developers should use [getFormFields](forms.md) to retrieve form data to send to
-an API.
+1.  HTML, CSS, Javascript, AJAX, Bootstrap, CURL scripts
+2.  GIT for code repository and version control
+3.  ATOM javascript editor
 
-To deploy a browser-template based SPA, run `grunt deploy`.
+## User Guide
 
-## Tasks
+To use this application you need to do the following:
 
-Developers should run these often!
+1.  To allow for tracking of games, first users need to sign-in before they start playing.
+2.  If you are a not registered user, you can register yourself by using the "Sign In / Register" button
+3.  Once signed in users have the option to change password, view game statistics or signout
+4.  Once user sign-in he/she can play the game and the game result will be dispalyed on the screen
+5.  Once the game is over users have the option to start a new game
 
--   `grunt nag` or just `grunt`: runs code quality analysis tools on your code
-    and complains
--   `grunt make-standard`: reformats all your code in the JavaScript Standard Style
--   `grunt <server|serve|s>`: generates bundles, watches, and livereloads
--   `grunt test`: runs any automated tests, depends on `grunt build`
--   `grunt build`: place bundled styles and scripts where `index.html` can find
-    them
+Enjoy playing!
+
+## Development Process
+
+Here is how I approached the development of this application
+
+1.  Had the requirements broken down into user stories and also had a basic wireframe created
+2.  Based on that I did some pseudo code and spent soem time designing the game logic
+3.  Then I built basic thml file so that I could start coding my game logic. I targted this hard part first since I was comfortable with other aspects of the project such as integrating the ajax service calls and displaying to back to the user
+4.  With every little change I made i unit tested all along to minimize defects and fixes. This helped a lot as I was able to identify minor defects and fix along the way.
+5.  All along also ensured every feature was committed and pushed to the GIT repository. This was specifically helpful since I knew exactly what had chnaged with each feature and did not have to struggle and go through a ton of code to fix or implement any missing functionality
+
+## Links to wireframes and user stories
+
+[Wireframes](https://github.com/MayoorPatil/mayoors-tictactoe/blob/master/assets/styles/images/MP_TicTacToe_Wireframe.png)
+
+[User Stories](https://github.com/MayoorPatil/mayoors-tictactoe/blob/master/assets/styles/images/MP_TicTacToe_UserStories.png)
 
 ## [License](LICENSE)
 
