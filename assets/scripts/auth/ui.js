@@ -28,6 +28,7 @@ const signInSuccess = function (data) {
   $('#signUpModal').modal('hide')
   $('#infoMessage').html('&nbsp;')
   authHelper.setSignInSuccessShowHide()
+  $('#sign-in-register').addClass('hidden')
   gameApi.createGame()
     .then(gameUi.createGameSuccess)
     .catch(gameUi.createGameFailure)
@@ -59,6 +60,7 @@ const signOutSuccess = function () {
   store.reset = false
   $('#infoMessage').text('Please sign in to start playing')
   $('#result').text('Signed out successfully!!')
+  $('#sign-in-register').removeClass('hidden')
   authHelper.setSignOutSuccessShowHide()
 }
 
