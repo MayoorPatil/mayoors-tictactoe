@@ -19,6 +19,8 @@ const hideSignInToggle = function () {
 }
 
 const setSignUpToggleShowHide = function () {
+  clearFormInputFields('sign-up')
+  $('#content').text('Informational messages will be displayed here...')
   $('#sign-up').removeClass('hidden')
   hideSignInToggle()
   $('#sign-in').addClass('hidden')
@@ -33,6 +35,8 @@ const setSignInToggleShowHide = function () {
 }
 
 const setOnChangePwdShowHide = function () {
+  clearFormInputFields('change-password')
+  $('#content').text('Informational messages will be displayed here...')
   $('#sign-up').addClass('hidden')
   showSignInToggle()
   $('#sign-in').addClass('hidden')

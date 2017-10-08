@@ -17,7 +17,7 @@ const signUpSuccess = function (data) {
 const signUpFailure = function (error) {
   console.error(error)
   $('#result').text(error.responseText)
-  $('#content').text('Email id is taken please try again with different id - ' + error.responseText)
+  $('#content').text('Either email id is taken or passwords do not match. Please try again - ' + error.responseText)
 }
 
 const signInSuccess = function (data) {
